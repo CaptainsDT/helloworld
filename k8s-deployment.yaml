@@ -20,7 +20,6 @@ spec:
       labels:
         k8s-app: helloworld
     spec:
-      affinity: {}
       containers:
         image: "registry.cn-hangzhou.aliyuncs.com/captains/jenkins-agent-tools:tags"
         imagePullPolicy: IfNotPresent
