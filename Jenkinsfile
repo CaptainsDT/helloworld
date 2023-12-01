@@ -74,4 +74,38 @@ pipeline{
             }
         }
     }
+
+    post {
+        success {
+            emailext (
+                subject: "【Jenkins 构建通知,请勿回复!】 项目名称:${env.JOB_NAME}  第 ${env.BUILD_NUMBER} 次更新正常",
+                body: """
+                详情：
+                SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
+                状态：${env.JOB_NAME} jenkins 更新运行正常
+                URL ：${env.BUILD_URL}
+                项目名称 ：${env.JOB_NAME}
+                项目更新进度：${env.BUILD_NUMBER}
+                """,
+                to: "760245899@qq.com",
+                recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+                )
+                }
+        failure {
+            emailext (
+                subject: "【Jenkins 构建通知,请勿回复!】 项目名称: ${env.JOB_NAME} 第 ${env.BUILD_NUMBER}] 次更新失败",
+                body: """
+                详情：
+                FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
+                状态：${env.JOB_NAME} jenkins 运行失败
+                URL ：${env.BUILD_URL}
+                项目名称 ：${env.JOB_NAME}
+                项目更新进度：${env.BUILD_NUMBER}
+                """,
+                to: "760245899@qq.com",
+                recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+                )
+                }
+    }
+
 }
