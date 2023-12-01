@@ -46,3 +46,23 @@ spec:
     targetPort: 8080
   selector:
     k8s-app: WorkLoadName
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-WorkLoadName
+  #annotations:
+    #nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+  - host:  # Replace with your domain or IP
+    http:
+      paths:
+      - path: /Path
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-WorkLoadName
+            port:
+              number: 8080

@@ -5,7 +5,8 @@ def appName = "helloworld"
 def branchName = "k8s-dev"
 // 工作负载类型
 def workLoadName = "deploy"
-
+// 服务请求路径
+def appPath = "hello"
 // ${BUILD_NUMBER} jenkins内置环境变量，不修改
 
 
@@ -52,6 +53,14 @@ pipeline{
             steps{
                 sh """
                 sed -i "s/WorkLoadName/${workLoadName}-${appName}-${branchName}/g" ./k8s-deployment.yaml
+                """
+            }
+
+        }
+        stage('更新ingress path'){
+            steps{
+                sh """
+                sed -i "s/Path/${appPath}/g" ./k8s-deployment.yaml
                 """
             }
 
