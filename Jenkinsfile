@@ -8,6 +8,8 @@ def branchName = "k8s-dev"
 def workLoadName = "deploy"
 // 服务请求路径
 def appPath = "hello"
+// ingress地址
+def ingressAdd = "http://192.168.203.131/"
 // ${BUILD_NUMBER} jenkins内置环境变量，不修改
 
 
@@ -87,6 +89,7 @@ pipeline{
                 URL ：${env.BUILD_URL}
                 项目名称 ：${env.JOB_NAME}
                 项目更新进度：${env.BUILD_NUMBER}
+                服务访问地址：${ingressAdd}${appPath}
                 """,
                 to: "760245899@qq.com",
                 recipientProviders: [[$class: 'DevelopersRecipientProvider']]
