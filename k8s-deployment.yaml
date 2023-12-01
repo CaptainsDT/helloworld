@@ -25,8 +25,8 @@ spec:
         imagePullPolicy: IfNotPresent
         name: WorkLoadName
         ports:
-          - containerPort: 8080
-            name: tcp-8080
+          - containerPort: AppPort
+            name: tcp-AppPort
             protocol: TCP
         securityContext:
           privileged: false  
@@ -40,10 +40,10 @@ metadata:
   namespace: NameSpace
 spec:
   ports:
-  - name: tcp-8080
-    port: 8080
+  - name: tcp-AppPort
+    port: AppPort
     protocol: TCP
-    targetPort: 8080
+    targetPort: AppPort
   selector:
     k8s-app: WorkLoadName
 ---
@@ -67,4 +67,4 @@ spec:
           service:
             name: svc-WorkLoadName
             port:
-              number: 8080
+              number: AppPort

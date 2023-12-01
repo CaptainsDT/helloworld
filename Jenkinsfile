@@ -1,17 +1,12 @@
-// 镜像地址及仓库
-def registryAdd = "192.168.203.40:80/library"
-// 命名空间必须存在
-def nameSpace = "dolab-namespace"
-def appName = "helloworld"
-def branchName = "k8s-dev"
-// 工作负载类型
-def workLoadName = "deploy"
-// 服务请求路径，不加/
-def appPath = "hello"
-// ingress地址
-def ingressAdd = "http://192.168.203.131/"
-// 邮件通知
-def emailUser = "760245899@qq.com,duanzhanpu@dataojo.com"
+def registryAdd = "192.168.203.40:80/library"                   // 镜像地址及仓库
+def nameSpace = "dolab-namespace"                               // 命名空间必须存在
+def appName = "helloworld"                                      // 服务名字
+def branchName = "k8s-dev"                                      // 服务代码分支
+def workLoadName = "deploy"                                     // 工作负载类型
+def appPath = "hello"                                           // 服务请求路径，不加'/'
+def appPort = "8080"                                            // 服务端口
+def ingressAdd = "http://192.168.203.131/"                      // ingress地址
+def emailUser = "760245899@qq.com,duanzhanpu@dataojo.com"       // 邮件通知
 // ${BUILD_NUMBER} jenkins内置环境变量，不修改
 
 
@@ -60,7 +55,13 @@ pipeline{
                 sed -i "s/WorkLoadName/${workLoadName}-${appName}-${branchName}/g" ./k8s-deployment.yaml
                 """
             }
-
+        }
+        stage('update app port'){
+            steps{
+                sh """
+                sed -i "s/AppPort/${appPort}/g" ./k8s-deployment.yaml
+                """
+            }
         }
         stage('update ingress path'){
             steps{
