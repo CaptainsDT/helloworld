@@ -6,7 +6,7 @@ def workLoadName = "deploy"                                     // 工作负载�
 def appPath = "hello"                                           // 服务请求路径，不加'/'
 def appPort = "8080"                                            // 服务端口
 def ingressAdd = "http://192.168.203.131/"                      // ingress地址
-def emailUser = "760245899@qq.com,duanzhanpu@dataojo.com"       // 邮件通知
+def emailUser = "760245899@qq.com"                              // 邮件通知，多人接收','分隔
 // ${BUILD_NUMBER} jenkins内置环境变量，不修改
 
 
