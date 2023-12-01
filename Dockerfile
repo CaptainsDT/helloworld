@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM 192.168.203.40/library/openjdk:8-jre-alpine
 MAINTAINER DATAOJO
 RUN mkdir -p /app
 RUN ln -svf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
