@@ -21,7 +21,7 @@ spec:
         k8s-app: helloworld
     spec:
       containers:
-      - image: "registry.cn-hangzhou.aliyuncs.com/captains/jenkins-agent-tools:tags"
+      - image: "192.168.203.40:80/library/helloworld:tags"
         imagePullPolicy: IfNotPresent
         name: helloworld
         ports:
