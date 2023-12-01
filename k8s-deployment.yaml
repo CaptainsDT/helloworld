@@ -60,6 +60,7 @@ spec:
   - host:  # Replace with your domain or IP
     http:
       paths:
+      #- path: /nginx(/|$)(.*)
       - path: /Path
         pathType: Prefix
         backend:
