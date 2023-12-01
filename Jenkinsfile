@@ -2,7 +2,6 @@ def registryAdd = "192.168.203.40:80/library"
 // 命名空间必须存在
 def nameSpace = "dolab-namespace"
 def appName = "helloworld"
-def appServerPort = "8080"
 def branchName = "k8s-dev"
 // 工作负载类型
 def workLoadName = "deploy"
@@ -28,7 +27,7 @@ pipeline{
         stage('build image and push'){
             steps{
                 sh """
-                /kaniko/executor --dockerfile=./Dockerfile --context=./ --destination=${registryAdd}/${appName}:${BUILD_NUMBER}
+                /kaniko/executor --dockerfile=./Dockerfile --context=./ --destination=${registryAdd}/${appName}-${branchName}:v${BUILD_NUMBER}
                 """
             }
         }
