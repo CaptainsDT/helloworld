@@ -1,7 +1,7 @@
 def registryAdd = "192.168.203.40:80/library"                   // 镜像地址及仓库
 def nameSpace = "dolab-namespace"                               // 命名空间必须存在
 def appName = "helloworld"                                      // 服务名字
-def branchName = "k8s-dev"                                      // 服务代码分支
+def branchName = "k8s-dev"                                      // 服务代码分支，保持与jenkins选择的scm分支一致
 def workLoadName = "deploy"                                     // 工作负载类型
 def appPath = "hello"                                           // 服务请求路径，不加'/'
 def appPort = "8080"                                            // 服务端口
