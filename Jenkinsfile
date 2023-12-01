@@ -12,12 +12,12 @@ def workLoadName = "deploy"
 pipeline{
     agent {label "jenkins-jenkins-agent"}
     stages{
-        stage('拉取代码'){
+        stage('git code'){
             steps{
                 git branch: "${branchName}", url: 'https://jihulab.com/k8s-demo/helloworld.git'
             }
         }
-        stage('构建'){
+        stage('code build'){
             steps{
                 sh """
                 mvn clean package -Dmaven.test.skip=true
@@ -39,7 +39,7 @@ pipeline{
             }
         }
 
-        stage('修改命名空间'){
+        stage('更新命名空间'){
             steps{
                 sh """
                 sed -i "s/NameSpace/${nameSpace}/g" ./k8s-deployment.yaml
@@ -48,7 +48,7 @@ pipeline{
 
         }
 
-        stage('修改workload name'){
+        stage('更新workload name'){
             steps{
                 sh """
                 sed -i "s/WorkLoadName/${workLoadName}-${appName}-${branchName}/g" ./k8s-deployment.yaml
@@ -57,7 +57,7 @@ pipeline{
 
         }
 
-        stage('部署'){
+        stage('deploy'){
             steps{
                 sh """
                 kubectl apply -f k8s-deployment.yaml
