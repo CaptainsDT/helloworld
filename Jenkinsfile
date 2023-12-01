@@ -84,7 +84,7 @@ pipeline{
     post {
         success {
             emailext (
-                subject: "【Jenkins 构建通知,请勿回复!】 项目名称:${env.JOB_NAME}  第 ${env.BUILD_NUMBER} 次更新正常",
+                subject: "【DATAOJO Jenkins SUCCESSFUL 构建通知,请勿回复!】 项目名称:${env.JOB_NAME}  第 ${env.BUILD_NUMBER} 次更新正常",
                 body: """
                 详情：
                 SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
@@ -100,7 +100,7 @@ pipeline{
                 }
         failure {
             emailext (
-                subject: "【Jenkins 构建通知,请勿回复!】 项目名称: ${env.JOB_NAME} 第 ${env.BUILD_NUMBER}] 次更新失败",
+                subject: "【DATAOJO Jenkins FAILED 构建通知,请勿回复!】 项目名称: ${env.JOB_NAME} 第 ${env.BUILD_NUMBER}] 次更新失败",
                 body: """
                 详情：
                 FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'
