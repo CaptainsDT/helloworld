@@ -31,10 +31,10 @@ pipeline{
                 """
             }
         }
-        stage('修改image tags'){
+        stage('更新镜像'){
             steps{
                 sh """
-                sed -i "s/tags/${BUILD_NUMBER}/g" ./k8s-deployment.yaml
+                sed -i "s/Iamge/${registryAdd}\/${appName}\-${branchName}\:v${BUILD_NUMBER}/g" ./k8s-deployment.yaml
                 """
             }
         }
