@@ -61,7 +61,6 @@ pipeline{
             steps{
                 sh """
                 sed -i "s/Path/${appPath}/g" ./k8s-deployment.yaml
-                sleep 200
                 """
             }
 
