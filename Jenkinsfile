@@ -51,7 +51,7 @@ pipeline{
         stage('修改workload name'){
             steps{
                 sh """
-                sed -i "s/WorkLoadName/${workLoadName}-${appName}/g" ./k8s-deployment.yaml
+                sed -i "s/WorkLoadName/${workLoadName}-${appName}-${branchName}/g" ./k8s-deployment.yaml
                 """
             }
 
