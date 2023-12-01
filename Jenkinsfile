@@ -13,7 +13,7 @@ pipeline{
     stages{
         stage('拉取代码'){
             steps{
-                git branch: '${branchName}', url: 'https://jihulab.com/k8s-demo/helloworld.git'
+                git branch: "${branchName}", url: 'https://jihulab.com/k8s-demo/helloworld.git'
             }
         }
         stage('构建'){
@@ -37,7 +37,7 @@ pipeline{
                 """
             }
         }
-        
+
         stage('修改命名空间'){
             steps{
                 sh """
