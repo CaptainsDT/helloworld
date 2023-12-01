@@ -1,3 +1,6 @@
+def registryAdd = "192.168.203.40:80"
+
+
 pipeline{
     agent {label "jenkins-jenkins-agent"}
     stages{
@@ -16,7 +19,7 @@ pipeline{
         stage('build image and push'){
             steps{
                 sh """
-                /kaniko/executor --dockerfile=./Dockerfile --context=./ --destination=192.168.203.40:80/library/helloworld:${BUILD_NUMBER}
+                /kaniko/executor --dockerfile=./Dockerfile --context=./ --destination=${registryAdd}/library/helloworld:${BUILD_NUMBER}
                 """
             }
         }
