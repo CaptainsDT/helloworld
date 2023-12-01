@@ -1,6 +1,6 @@
 def registryAdd = "192.168.203.40:80"
 // 命名空间必须存在
-def nameSpace = "default"
+def nameSpace = "dolab-namespace"
 def appName = "helloworld"
 def appServerPort = "8080"
 def branchName = "k8s-dev"
