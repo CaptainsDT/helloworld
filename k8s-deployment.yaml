@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: helloworld
-  namespace: default
+  namespace: NameSpace
 spec:
   progressDeadlineSeconds: 600
   replicas: 1
