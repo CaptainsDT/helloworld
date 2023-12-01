@@ -1,3 +1,4 @@
+// 镜像地址及仓库
 def registryAdd = "192.168.203.40:80/library"
 // 命名空间必须存在
 def nameSpace = "dolab-namespace"
