@@ -11,7 +11,7 @@ def appPath = "hello"
 // ingress地址
 def ingressAdd = "http://192.168.203.131/"
 // 邮件通知
-def emailUser = "760245899@qq.com"
+def emailUser = "760245899@qq.com,duanzhanpu@dataojo.com"
 // ${BUILD_NUMBER} jenkins内置环境变量，不修改
 
 
