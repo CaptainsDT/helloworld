@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloworld
+  name: WorkLoadName
   namespace: default
 spec:
   progressDeadlineSeconds: 600
@@ -9,7 +9,7 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      k8s-app: helloworld
+      k8s-app: WorkLoadName
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -18,12 +18,12 @@ spec:
   template:
     metadata:
       labels:
-        k8s-app: helloworld
+        k8s-app: WorkLoadName
     spec:
       containers:
       - image: "192.168.203.40:80/library/helloworld:tags"
         imagePullPolicy: IfNotPresent
-        name: helloworld
+        name: WorkLoadName
         ports:
           - containerPort: 8080
             name: tcp-8080
@@ -36,7 +36,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: svc-helloworld
+  name: svc-WorkLoadName
   namespace: default
 spec:
   ports:
@@ -45,4 +45,4 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    k8s-app: helloworld
+    k8s-app: WorkLoadName

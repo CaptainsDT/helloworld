@@ -4,6 +4,8 @@ def nameSpace = "dolab-namespace"
 def appName = "helloworld"
 def appServerPort = "8080"
 def branchName = "k8s-dev"
+// 工作负载名称
+def workLoadName = "deploy"
 
 // ${BUILD_NUMBER} jenkins内置环境变量，不修改
 
@@ -30,7 +32,7 @@ pipeline{
                 """
             }
         }
-        stage('修改tags'){
+        stage('修改image tags'){
             steps{
                 sh """
                 sed -i "s/tags/${BUILD_NUMBER}/g" ./k8s-deployment.yaml
@@ -47,10 +49,20 @@ pipeline{
 
         }
 
+        stage('修改workload name'){
+            steps{
+                sh """
+                sed -i "s/WorkLoadName/${workLoadName}-${appName}/g" ./k8s-deployment.yaml
+                """
+            }
+
+        }
+
         stage('部署'){
             steps{
                 sh """
                 kubectl apply -f k8s-deployment.yaml
+                sleep 200
                 """
             }
         }
