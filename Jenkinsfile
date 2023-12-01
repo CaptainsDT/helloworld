@@ -6,7 +6,7 @@ def appName = "helloworld"
 def branchName = "k8s-dev"
 // 工作负载类型
 def workLoadName = "deploy"
-// 服务请求路径
+// 服务请求路径，不加/
 def appPath = "hello"
 // ingress地址
 def ingressAdd = "http://192.168.203.131/"
