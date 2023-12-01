@@ -1,4 +1,4 @@
-def registryAdd = "192.168.203.40:80"
+def registryAdd = "192.168.203.40:80/library"
 // 命名空间必须存在
 def nameSpace = "dolab-namespace"
 def appName = "helloworld"
@@ -28,7 +28,7 @@ pipeline{
         stage('build image and push'){
             steps{
                 sh """
-                /kaniko/executor --dockerfile=./Dockerfile --context=./ --destination=${registryAdd}/library/helloworld:${BUILD_NUMBER}
+                /kaniko/executor --dockerfile=./Dockerfile --context=./ --destination=${registryAdd}/${appName}:${BUILD_NUMBER}
                 """
             }
         }
