@@ -4,7 +4,7 @@ def nameSpace = "dolab-namespace"
 def appName = "helloworld"
 def appServerPort = "8080"
 def branchName = "k8s-dev"
-// 工作负载名称
+// 工作负载类型
 def workLoadName = "deploy"
 
 // ${BUILD_NUMBER} jenkins内置环境变量，不修改
@@ -62,7 +62,6 @@ pipeline{
             steps{
                 sh """
                 kubectl apply -f k8s-deployment.yaml
-                sleep 200
                 """
             }
         }
