@@ -1,4 +1,11 @@
 def registryAdd = "192.168.203.40:80"
+// 命名空间必须存在
+def nameSpace = "default"
+def appName = "helloworld"
+def appServerPort = "8080"
+def branchName = "k8s-dev"
+
+// ${BUILD_NUMBER} jenkins内置环境变量，不修改
 
 
 pipeline{
@@ -6,7 +13,7 @@ pipeline{
     stages{
         stage('拉取代码'){
             steps{
-                git branch: 'k8s-dev', url: 'https://jihulab.com/k8s-demo/helloworld.git'
+                git branch: '${branchName}', url: 'https://jihulab.com/k8s-demo/helloworld.git'
             }
         }
         stage('构建'){
@@ -31,9 +38,21 @@ pipeline{
             }
         }
         stage('部署到k8s集群中'){
-            steps{
+            steps('修改命名空间'){
+                sh """
+                sed -i "s/NameSpace/${nameSpace}/g" ./k8s-deployment.yaml
+                """
+            }
+
+            steps('开始部署'){
                 sh """
                 kubectl apply -f k8s-deployment.yaml
+                """
+            }
+
+            steps('部署完成'){
+                sh """
+                echo "部署完成"
                 """
             }
         }
