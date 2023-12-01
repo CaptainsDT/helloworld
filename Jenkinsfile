@@ -37,22 +37,20 @@ pipeline{
                 """
             }
         }
-        stage('部署到k8s集群中'){
-            steps('修改命名空间'){
+        
+        stage('修改命名空间'){
+            steps{
                 sh """
                 sed -i "s/NameSpace/${nameSpace}/g" ./k8s-deployment.yaml
                 """
             }
 
-            steps('开始部署'){
+        }
+
+        stage('部署'){
+            steps{
                 sh """
                 kubectl apply -f k8s-deployment.yaml
-                """
-            }
-
-            steps('部署完成'){
-                sh """
-                echo "部署完成"
                 """
             }
         }
