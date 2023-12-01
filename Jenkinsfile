@@ -32,7 +32,7 @@ pipeline{
                 """
             }
         }
-        stage('更新镜像'){
+        stage('update image'){
             steps{
                 sh """
                 sed -i "s#Iamge#${registryAdd}/${appName}-${branchName}:v${BUILD_NUMBER}#g" ./k8s-deployment.yaml
@@ -40,7 +40,7 @@ pipeline{
             }
         }
 
-        stage('更新命名空间'){
+        stage('update namespace'){
             steps{
                 sh """
                 sed -i "s/NameSpace/${nameSpace}/g" ./k8s-deployment.yaml
@@ -49,7 +49,7 @@ pipeline{
 
         }
 
-        stage('更新workload name'){
+        stage('update workload name'){
             steps{
                 sh """
                 sed -i "s/WorkLoadName/${workLoadName}-${appName}-${branchName}/g" ./k8s-deployment.yaml
@@ -57,7 +57,7 @@ pipeline{
             }
 
         }
-        stage('更新ingress path'){
+        stage('update ingress path'){
             steps{
                 sh """
                 sed -i "s/Path/${appPath}/g" ./k8s-deployment.yaml
