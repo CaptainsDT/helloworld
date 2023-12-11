@@ -1,7 +1,7 @@
 def registryAdd = "192.168.203.40:80/library"                   // 镜像地址及仓库
 def nameSpace = "dolab-namespace"                               // 命名空间必须存在
 def appName = "helloworld"                                      // 服务名字
-def branchName = "main"                                     // 服务代码分支，保持与jenkins选择的scm分支一致
+def branchName = "k8s-dev-go"                                     // 服务代码分支，保持与jenkins选择的scm分支一致
 def appPath = "hello" 
 def ingressAdd = "http://192.168.203.131/"
 def emailUser = "760245899@qq.com"                              // 邮件通知，多人接收','分隔
@@ -16,7 +16,7 @@ pipeline{
     stages{
         stage('git code'){
             steps{
-                git branch: "${branchName}", credentialsId: 'gitlab',url: 'https://jihulab.com/k8s-demo/helloworld-go.git'
+                git branch: "${branchName}", credentialsId: 'gitlab',url: 'https://jihulab.com/k8s-demo/helloworld.git'
             }
         }
         stage('code build'){
