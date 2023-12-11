@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configmapName }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.configmapName }}
+    helm.sh/chart: {{ .Values.configmapName }}
+    app.kubernetes.io/instance: {{ .Values.configmapName }}
+  namespace: {{ .Values.namespace }}
+data:
+  app.conf: |
+    appname = helloworld
+    httpport = 9091
+    runmode = dev

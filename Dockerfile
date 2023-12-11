@@ -1,8 +1,10 @@
-FROM openjdk:8-jre-alpine
-MAINTAINER DATAOJO
-RUN mkdir -p /app
+FROM 192.168.203.40:80/library/debian:stable-slim
+MAINTAINER DT
 RUN ln -svf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-ADD ./target/spring-boot-helloworld-1.0.0-SNAPSHOT.jar /app
+RUN mkdir -p /app/conf
+ADD helloworld /app
+ADD conf/app.conf /app/conf/
 WORKDIR /app
-EXPOSE 8080
-CMD ["java","-jar","spring-boot-helloworld-1.0.0-SNAPSHOT.jar"]
+RUN chmod a+x /app/helloworld
+EXPOSE 9091
+CMD ["/bin/bash", "-c", "./helloworld"]

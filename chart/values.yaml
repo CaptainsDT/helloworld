@@ -1,0 +1,25 @@
+chartName: CHARTNAME
+namespace: NAMESPACE
+name: APPNAME
+port: 9091
+#secrets: dataojo-coding-secret
+configmapName: helloworld-configmap
+configmapNameForSelf: helloworld-configmap
+images:
+  image: IMAGES
+  tag: VERSION
+appresources:
+  pdbMinAvailable: 1
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "10m"
+    limits:
+      memory: "2048Mi"
+      cpu: "1000m"
+
+path: /hello
+
+ingress:
+  name: helloworld
+  type: nginx
